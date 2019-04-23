@@ -13,3 +13,6 @@
 
 # JetBrains
 .idea
+
+# Protobuf
+protos/*.pb.go
