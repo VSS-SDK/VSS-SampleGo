@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"./protos"
+	"fmt"
+)
 
 func main() {
-	fmt.Println("asdasd")
+	var test protos.Global_Commands
+
+	fmt.Println(test)
 }
