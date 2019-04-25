@@ -1,12 +1,31 @@
 package main
 
 import (
-	"./protos"
+	"./command"
 	"fmt"
+	"time"
 )
 
 func main() {
-	var test protos.Global_Commands
+	globalCommand := command.RandCommand()
 
-	fmt.Println(test)
+	fmt.Println("command")
+
+	commandSender, err := command.NewSender()
+	if err != nil {
+		fmt.Println("Cannot create sender")
+		return
+	}
+
+	fmt.Println("socket")
+
+	for true {
+		fmt.Println("send")
+		time.Sleep(1000 * time.Millisecond)
+		err := commandSender.Send(globalCommand)
+
+		if err != nil {
+			return
+		}
+	}
 }
