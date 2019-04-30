@@ -1,7 +1,9 @@
-package command
+package command_sender
 
 import (
 	"github.com/VSS-SDK/VSS-SampleGo/base"
+	"github.com/VSS-SDK/VSS-SampleGo/command"
+	"github.com/VSS-SDK/VSS-SampleGo/wheels_command"
 	"github.com/golang/protobuf/proto"
 	"github.com/pebbe/zmq4"
 )
@@ -14,15 +16,15 @@ var (
 )
 
 type Sender interface {
-	Send(command Command) error
+	Send(command command.Command) error
 }
 
 type sender struct {
 	socket *zmq4.Socket
-	mapper Mapper
+	mapper command.Mapper
 }
 
-func (s *sender) Send(command Command) error {
+func (s *sender) Send(command command.Command) error {
 	if s.socket == nil {
 		return ErrSendClosedSocket
 	}
@@ -52,7 +54,7 @@ func NewSender() (Sender, error) {
 
 	sender := &sender{
 		socket,
-		NewMapper(),
+		command.NewMapper(wheels_command.NewMapper()),
 	}
 
 	return sender, nil

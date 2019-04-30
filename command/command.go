@@ -1,33 +1,36 @@
 package command
 
+import (
+	"github.com/VSS-SDK/VSS-SampleGo/wheels_command"
+	"math/rand"
+)
+
 type Command struct {
-	wheelsCommands []WheelsCommand
+	WheelsCommands []wheels_command.WheelsCommand
 }
 
 func ZeroCommand() Command {
-	var wheelsCommands []WheelsCommand
-
-	wheelsCommands = append(wheelsCommands, ZeroWheelsCommand())
-	wheelsCommands = append(wheelsCommands, ZeroWheelsCommand())
-	wheelsCommands = append(wheelsCommands, ZeroWheelsCommand())
+	var wheelsCommands []wheels_command.WheelsCommand
 
 	return Command{
 		wheelsCommands,
 	}
 }
 
-func NewCommand(wheelsCommands []WheelsCommand) Command {
+func NewCommand(wheelsCommands []wheels_command.WheelsCommand) Command {
 	return Command{
 		wheelsCommands,
 	}
 }
 
 func RandCommand() Command {
-	var wheelsCommands []WheelsCommand
+	var wheelsCommands []wheels_command.WheelsCommand
 
-	wheelsCommands = append(wheelsCommands, RandWheelsCommand())
-	wheelsCommands = append(wheelsCommands, RandWheelsCommand())
-	wheelsCommands = append(wheelsCommands, RandWheelsCommand())
+	qtd := rand.Intn(10) + 1
+
+	for i := 0; i < qtd; i++ {
+		wheelsCommands = append(wheelsCommands, wheels_command.RandWheelsCommand())
+	}
 
 	return Command{
 		wheelsCommands,

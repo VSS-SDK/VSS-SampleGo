@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/VSS-SDK/VSS-SampleGo/command"
+	"github.com/VSS-SDK/VSS-SampleGo/command_sender"
 	"time"
 )
 
@@ -11,7 +12,7 @@ func main() {
 
 	fmt.Println("command")
 
-	commandSender, err := command.NewSender()
+	commandSender, err := command_sender.NewSender()
 	if err != nil {
 		fmt.Println("Cannot create sender")
 		return
