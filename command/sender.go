@@ -1,7 +1,7 @@
 package command
 
 import (
-	"../base"
+	"github.com/VSS-SDK/VSS-SampleGo/base"
 	"github.com/golang/protobuf/proto"
 	"github.com/pebbe/zmq4"
 )

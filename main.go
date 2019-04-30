@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./command"
 	"fmt"
+	"github.com/VSS-SDK/VSS-SampleGo/command"
 	"time"
 )
 

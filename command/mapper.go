@@ -1,6 +1,6 @@
 package command
 
-import "../protos"
+import "github.com/VSS-SDK/VSS-SampleGo/protos"
 
 type Mapper interface {
 	ToCommand(command protos.Global_Commands) Command
