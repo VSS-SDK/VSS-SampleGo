@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"github.com/VSS-SDK/VSS-SampleGo/command"
 	"github.com/VSS-SDK/VSS-SampleGo/command_sender"
+	"github.com/VSS-SDK/VSS-SampleGo/wheels_command"
 	"time"
 )
 
 func main() {
-	globalCommand := command.RandCommand()
+	globalCommand := buildCommand()
 
 	fmt.Println("command")
 
@@ -29,4 +30,14 @@ func main() {
 			return
 		}
 	}
+}
+
+func buildCommand() *command.Command {
+	var wheelsCommands []*wheels_command.WheelsCommand
+
+	for i := 0; i < 3; i++ {
+		wheelsCommands = append(wheelsCommands, wheels_command.NewWheelsCommand(10, -10))
+	}
+
+	return command.NewCommand(wheelsCommands)
 }

@@ -18,6 +18,10 @@ func TestRandCommand(t *testing.T) {
 
 	assert.NotNil(t, cmd)
 	assert.NotEmpty(t, cmd.WheelsCommands)
+
+	for _, wheelsCommands := range cmd.WheelsCommands {
+		assert.NotZero(t, wheelsCommands)
+	}
 }
 
 func TestNewCommand(t *testing.T) {

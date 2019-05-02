@@ -16,7 +16,7 @@ var (
 )
 
 type Sender interface {
-	Send(command command.Command) error
+	Send(command *command.Command) error
 }
 
 type sender struct {
@@ -24,7 +24,7 @@ type sender struct {
 	mapper command.Mapper
 }
 
-func (s *sender) Send(command command.Command) error {
+func (s *sender) Send(command *command.Command) error {
 	if s.socket == nil {
 		return ErrSendClosedSocket
 	}

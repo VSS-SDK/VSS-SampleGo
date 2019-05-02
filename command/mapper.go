@@ -6,8 +6,8 @@ import (
 )
 
 type Mapper interface {
-	ToCommand(command protos.Global_Commands) Command
-	FromCommand(command Command) *protos.Global_Commands
+	ToCommand(command *protos.Global_Commands) *Command
+	FromCommand(command *Command) *protos.Global_Commands
 }
 
 type mapper struct {
@@ -20,8 +20,8 @@ func NewMapper(wheels_command_mapper wheels_command.Mapper) Mapper {
 	}
 }
 
-func (m *mapper) ToCommand(command protos.Global_Commands) Command {
-	var wheelsCommands []wheels_command.WheelsCommand
+func (m *mapper) ToCommand(command *protos.Global_Commands) *Command {
+	var wheelsCommands []*wheels_command.WheelsCommand
 
 	for _, c := range command.RobotCommands {
 		wheelsCommands = append(wheelsCommands, m.wheels_command_mapper.ToWheelsCommand(c))
@@ -30,7 +30,7 @@ func (m *mapper) ToCommand(command protos.Global_Commands) Command {
 	return NewCommand(wheelsCommands)
 }
 
-func (m *mapper) FromCommand(command Command) *protos.Global_Commands {
+func (m *mapper) FromCommand(command *Command) *protos.Global_Commands {
 	var robots []*protos.Robot_Command
 
 	for _, c := range command.WheelsCommands {
