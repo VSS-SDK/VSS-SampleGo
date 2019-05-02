@@ -1,14 +1,14 @@
-package command_test
+package command_mapper_test
 
 import (
-	"github.com/VSS-SDK/VSS-SampleGo/command"
+	"github.com/VSS-SDK/VSS-SampleGo/command_mapper"
 	"github.com/VSS-SDK/VSS-SampleGo/wheels_command"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestNewMapper(t *testing.T) {
-	mapper := command.NewMapper(wheels_command.NewMapper())
+	mapper := command_mapper.NewMapper(wheels_command.NewMapper())
 
 	assert.NotNil(t, mapper)
 }

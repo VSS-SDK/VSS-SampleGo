@@ -3,6 +3,7 @@ package command_sender
 import (
 	"github.com/VSS-SDK/VSS-SampleGo/base"
 	"github.com/VSS-SDK/VSS-SampleGo/command"
+	"github.com/VSS-SDK/VSS-SampleGo/command_mapper"
 	"github.com/VSS-SDK/VSS-SampleGo/wheels_command"
 	"github.com/golang/protobuf/proto"
 	"github.com/pebbe/zmq4"
@@ -21,7 +22,7 @@ type Sender interface {
 
 type sender struct {
 	socket *zmq4.Socket
-	mapper command.Mapper
+	mapper command_mapper.Mapper
 }
 
 func (s *sender) Send(command *command.Command) error {
@@ -54,7 +55,7 @@ func NewSender() (Sender, error) {
 
 	sender := &sender{
 		socket,
-		command.NewMapper(wheels_command.NewMapper()),
+		command_mapper.NewMapper(wheels_command.NewMapper()),
 	}
 
 	return sender, nil
