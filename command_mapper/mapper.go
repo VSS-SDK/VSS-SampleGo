@@ -15,9 +15,9 @@ type mapper struct {
 	wheels_command_mapper wheels_command.Mapper
 }
 
-func NewMapper(wheels_command_mapper wheels_command.Mapper) Mapper {
+func NewMapper() Mapper {
 	return &mapper{
-		wheels_command_mapper,
+		wheels_command.NewMapper(),
 	}
 }
 
